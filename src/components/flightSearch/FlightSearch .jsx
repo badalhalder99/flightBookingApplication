@@ -127,7 +127,7 @@ const FlightSearch = ({ flightData }) => {
                         <div className="flex justify-around items-center small:flex-row 2xsmall:flex-col">
                             <p className="flex justify-center items-center text-white text-[14px] small:mb-0 2xsmall:mb-1"><FaCircleCheck className='mr-1 text-[#ec8134] text-base'/> SEARCH RESULTS</p>
                             <p className="flex justify-center items-center text-white text-[14px] small:mb-0 2xsmall:mb-1"><FaRegCheckCircle className='mr-1 text-[#ec8134] text-base'/> PASSENGER DETAILS</p>
-                            <p className="flex justify-center items-center text-white text-[14px]"><FaRegCheckCircle className='mr-1 text-[#ec8134] text-base'/> BOOKING INFORMATION</p>
+                            <p className="flex justify-center items-center text-white text-[14px]"><FaRegCheckCircle className='mr-1 text-[#ec8134] text-base'/> BOOKING INFORMATION n</p>
                         </div>
                     </div>
                 </div>
