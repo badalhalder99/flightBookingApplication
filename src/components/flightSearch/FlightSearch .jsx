@@ -127,7 +127,7 @@ const FlightSearch = ({ flightData }) => {
                         <div className="flex justify-around items-center small:flex-row 2xsmall:flex-col">
                             <p className="flex justify-center items-center text-white text-[14px] small:mb-0 2xsmall:mb-1"><FaCircleCheck className='mr-1 text-[#ec8134] text-base'/> SEARCH RESULTS</p>
                             <p className="flex justify-center items-center text-white text-[14px] small:mb-0 2xsmall:mb-1"><FaRegCheckCircle className='mr-1 text-[#ec8134] text-base'/> PASSENGER DETAILS</p>
-                            <p className="flex justify-center items-center text-white text-[14px]"><FaRegCheckCircle className='mr-1 text-[#ec8134] text-base'/> BOOKING INFORMATION n</p>
+                            <p className="flex justify-center items-center text-white text-[14px]"><FaRegCheckCircle className='mr-1 text-[#ec8134] text-base'/> BOOKING INFORMATION</p>
                         </div>
                     </div>
                 </div>
@@ -141,39 +141,47 @@ const FlightSearch = ({ flightData }) => {
                     </div>
                     <div className="dataTable bg-white  lg:w-[78%] 2xsmall:w-full py-2">
                         {searchResults.length > 0 ? (
-                            <div>
+                            <div className='overflow-x-auto'>
                                 <ul>
                                     {searchResults.map((flight, index) => (
-                                        <li key={index} className='mb-5'>
+                                        <li key={index} className='mb-3'>
                                             <div>
                                                 {flight.legs.map((leg, legIndex) => (
-                                                    <div key={legIndex} className='shadow-md mb-3 p-3'>
-                                                        <div className='flex justify-between items-start'>
-                                                            <p>{formatDate2(leg.segment.departureDate)}</p>
-                                                            <p className='flex justify-center items-center'>{leg.segment.departureLocation}  <MdFlight className='rotate-90 mr-1 ml-1'/> {leg.segment.arrivalLocation}</p>
+                                                    <div key={legIndex} className='border border-solid border-[#ddd] mb-2 p-3 pb-2 overflow-x-auto rounded-lg'>
+                                                        <div className='flex justify-between items-start overflow-x-auto'>
+                                                            <p className='text-nowrap'>{formatDate2(leg.segment.departureDate)}</p>
+                                                            <p className='flex justify-center items-center text-nowrap mr-5 ml-5'>{leg.segment.departureLocation}  <MdFlight className='rotate-90 mr-1 ml-1'/> {leg.segment.arrivalLocation}</p>
                                                             {/* Add more details as needed */}
                                                             <div>
-                                                                <button type='button' className='bg-[#ec8134] text-white px-2 py-1 rounded-md block'>Book Now</button>
-                                                                <button className='mt-1 text-[14px] flex justify-start items-center' onClick={() => toggleDetails(leg.ref)}>
+                                                                <button type='button' className='bg-[#ec8134] text-white px-2 py-1 rounded-md block text-nowrap'>Book Now</button>
+                                                                <button className='mt-1 text-[14px] flex justify-start items-center mb-1 text-nowrap' onClick={() => toggleDetails(leg.ref)}>
                                                                     {showDetails[leg.ref] ? 'Flight Details' : 'Flight Details'} <MdKeyboardArrowDown className='text-lg'/>
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <div>
+                                                        <div className='overflow-x-auto'>
                                                             {showDetails[leg.ref] && (
-                                                                <div className="details">
+                                                                <div className="details border-t border-solid border-[#ddd] pt-2 overflow-x-auto">
+
+                                                                    <div className='flex justify-start items-center bg-black text-white w-[120px] px-5 py-1 overflow-x-auto mb-2'>
+                                                                        {departure.toUpperCase()} 
+                                                                        <MdFlight className='rotate-90 mr-1 ml-1 text-lg'/> 
+                                                                        {arrival.toUpperCase()}
+                                                                    </div>
+
                                                                     {leg.segmentDetails.map(detail => (
-                                                                        <div key={detail.id}>
-                                                                            <p>Origin: {detail.origin.airport}, {detail.origin.city}, {detail.origin.country}, Terminal: {detail.origin.terminal}, DateTime: {detail.origin.dateTime}, TimeZone: {detail.origin.timeZone}</p>
-                                                                            <p>Destination: {detail.destination.airport}, {detail.destination.city}, {detail.destination.country}, Terminal: {detail.destination.terminal}, DateTime: {detail.destination.dateTime}, TimeZone: {detail.destination.timeZone}</p>
-                                                                            <p>Fleet: Marketing: {detail.fleet.marketing}, Flight Number: {detail.fleet.marketingFlightNumber}, Operating: {detail.fleet.operating}, Operating Flight Number: {detail.fleet.operatingFlightNumber}, Equipment Code: {detail.fleet.equipment.code}, Type (First Leg): {detail.fleet.equipment.typeForFirstLeg}, Type (Last Leg): {detail.fleet.equipment.typeForLastLeg}</p>
+                                                                        <div key={detail.id} className='flex justify-between items-center border-b border-solid border-[#ddd] py-2 overflow-x-auto'>
+                                                                            <p className='text-nowrap mr-8'>{detail.fleet.marketing} <br />Aircraft: {detail.fleet.marketingFlightNumber}</p>
+                                                                            
+                                                                            <p className='text-nowrap mr-8'>{detail.origin.dateTime} <br /> {detail.origin.airport}</p>
+
+                                                                            <p className='text-nowrap mr-8'>{detail.destination.dateTime} <br /> {detail.destination.airport}</p>
+                                                                            <p className='text-nowrap'>{detail.fleet.marketing} <br />{detail.fleet.marketingFlightNumber}</p>
                                                                         </div>
                                                                     ))}
                                                                 </div>
                                                             )}
                                                         </div>
-
-                                                        
                                                     </div>
                                                 ))}
                                             </div>
