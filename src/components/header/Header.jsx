@@ -8,7 +8,7 @@ const Header = () => {
             <div className={`container ${styles.customContainer} my-0 ml-auto mr-auto py-1 md:px-5 2xsmall:px-4 lg:max-w-[1024px] xl:max-w-[1320px]`}>
                 <div className="contentWrap flex justify-between items-center">
                     <div className="imgWrap">
-                        <img src="../../../public/logo.gif" alt="logo" className='h-[45px]' />
+                        <img src="../../../public/logo.png" alt="logo" className='h-[45px]' />
                     </div>
                     <div className="2xsmall:hidden xsmall:block ml-auto">
                         <div className="phoneNumber flex justify-center items-center">
